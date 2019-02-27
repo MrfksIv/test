@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css" rel="stylesheet" media="all">
+        p,
+        ul,
+        ol,
+        blockquote {
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        a {
+            color: #3869D4;
+        }
+
+        a img {
+            border: none;
+        }
+
+        td {
+            word-break: break-word;
+        }
+
+        .email-footer p {
+            color: #AEAEAE;
+        }
+
+        .social td {
+            padding: 0;
+            width: auto;
+        }
+
+        .purchase_heading p {
+            margin: 0;
+            color: #9BA2AB;
+            font-size: 12px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #2F3133;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        h3 {
+            margin-top: 0;
+            color: #2F3133;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        p {
+            margin-top: 0;
+            color: #74787E;
+            font-size: 16px;
+            line-height: 1.5em;
+            text-align: left;
+        }
+
+        p.sub {
+            font-size: 12px;
+        }
+
+        p.center {
+            text-align: center;
+        }
+
+        @font-face {
+            font-family: 'Gilroy2';
+            src: url({{fontS3Url}});
+        }
+
+        *:not(br):not(tr):not(html) {
+            font-family: 'Gilroy2';
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 86% !important;
+            height: 100%;
+            margin: 0 7%;
+            line-height: 1.4;
+            background-color: #FFFFFF;
+            color: #74787E;
+            -webkit-text-size-adjust: none;
+        }
+
+
+        #logo-address-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 80px;
+        }
+
+        #logo-container {
+            width: 10%;
+        }
+
+        img.logo {
+            padding-top: 50px;
+        }
+
+        #address-container {
+            text-align: right;
+            width: 90%;
+            margin-top: 7%;
+            font-size: 17px;
+            color: #eee;
+            opacity: 0.8;
+        }
+        #address-container span.corp {
+            font-weight: bold;
+        }
+
+        h1.invoice-header {
+            color: #222D41;
+            font-size: 30px;
+            text-align: right;
+            border-bottom: 2px solid #eee;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .table-align-left {
+            text-align: left;
+        }
+        .table-align-right {
+            text-align: right;
+        }
+        .table-align-center {
+            text-align: center;
+        }
+
+        table.invoice-table th {
+            color: #eee;
+            background-color: black;
+            opacity: 0.8;
+            font-size: 20px;
+        }
+
+        tr#blue {
+            background-color: #009AB9;
+        }
+
+
+        table.subscription-table th {
+            color: white;
+            background-color: #009AB9;
+        }
+
+        .coupon-details-container {
+            width: 60%;
+            margin-left: 39%;
+        }
+
+        .borders {
+            border-top: 2px solid #eee;
+            border-bottom: 2px solid #eee;
+        }
+
+        .border-bottom {
+            border-bottom: 2px solid #eee;
+        }
+
+        .margin {
+            margin-top: 150px;
+        }
+
+        span.bigger {
+            font-size: 25px;
+        }
+
+        .footer {
+            width: 70%;
+            margin-left: 7%;
+            position: absolute;
+            font-size: 12px;
+            top: 90%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="logo-address-container">
+        <div id="logo-container">
+            <img class="logo" src="{{logoS3Url}}" width="200px" height="auto"/>
+        </div>
+        <div id="address-container">
+            {{#if corporationName}}
+                <span class="corp">{{ corporationName }}</span><br>
+            {{/if}}
+            {{#if corporationAddress}}
+                <span class="corp">{{corporationAddress}}</span><br>
+            {{/if}}
+            {{#if corporationCodeCountry}}
+                <span class="corp">{{corporationCodeCountry}}</span><br>
+            {{/if}}
+        </div>
+    </div>
+    <div>
+        <h1 class="invoice-header"> PAID INVOICE</h1>
+    </div>
+
+    <div class="invoice-table-container">
+        <table class="invoice-table">
+            <tr>
+                <th class="table-align-left">Invoice Number</th>
+                <th class="table-align-left">Invoice Date</th>
+                <th class="table-align-right">Account</th>
+            </tr>
+            <tr>
+                <td class="table-align-left">{{ invoiceNumber }}</td>
+                <td class="table-align-left">{{ invoiceDate }}</td>
+                <td class="table-align-right">{{ invoiceAccount }}</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table class="invoice-table">
+            <tr>
+                <th class="table-align-left">Billed to<th>
+            </tr>
+            <tr>
+                <td class="table-align-left">
+                    {{ billedToName }}<br>
+                    {{#if billedToAddress}}
+                        <span>{{billedToAddress}}</span>
+                    {{/if}}
+                    {{#if billedToAddress}}
+                        <span>{{billedToAddress}}</span><br>
+                    {{/if}}
+                    {{#if billedToAddressState}}
+                        <span>{{billedToAddressState}}</span><br>
+                    {{/if}}
+                    {{#if billedToAddressZipCode}}
+                        <span>{{billedToAddressZipCode}}</span><br>
+                    {{/if}}
+                    {{#if billedToCountry}}
+                        <span>{{billedToCountry}}</span><br>
+                    {{/if}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="subscription-table-container border-bottom">
+        <table class="subscription-table">
+            <tr id="blue">
+                <th class="table-align-left">DESCRIPTION</th>
+                <th class="table-align-center">BILLING PERIOD</th>
+                <th class="table-align-right">AMOUNT</th>
+            </tr>
+            <tr>
+                <td class="table-align-left">{{ subscription }}</td>
+                <td class="table-align-center">{{ timePeriod }}</td>
+                <td class="table-align-right">{{ amount }}</td>
+            </tr>
+        </table>
+    </div>
+    {{#if couponAmount}}
+        <div class="coupon-details-container borders margin">
+            <table>
+                <tr>
+                    <td class="table-align-right">
+                        <span>Coupon Discount</span>
+                        {{#if couponDescription}}
+                            <br><span style="font-size:11px; color:#eee">{{couponDescription}}</span>
+                        {{/if}}
+                    </td>
+                    <td class="table-align-right">
+                        {{couponAmount}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="coupon-details-container">
+            <table>
+                <tr>
+                    <td class="table-align-right">
+                        <span class="bigger">Total:</span><br>
+                     </td>
+                    <td class="table-align-right">
+                        <span class="bigger">{{finalAmount}}</span>
+                    </td>
+                </tr>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            If you have any questions about this invoice, please contact billing@overflow.io and attach the invoice
+            or include the invoice number as reference.
+            <br><br>
+            Thank you for your payment.
+        </div>
+    {{/if}}
+</body>
+</html>
